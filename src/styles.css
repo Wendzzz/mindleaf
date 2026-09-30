@@ -321,13 +321,15 @@ p { margin: 0; }
 .form-error { margin-top: 10px; font-size: 14px; font-weight: 700; color: #A3301B; }
 .form-done { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; background: var(--sage); color: var(--ink); font-size: 17px; font-weight: 800; }
 
-/* Footer */
-.footer { border-top: 1px solid var(--rule); padding-block: 32px; }
+/* Footer: brand green, reversed logo. Text colours checked for 4.5:1 or better on #1F4034. */
+.footer { background: var(--forest); color: #D6E2DB; padding-block: 44px; }
 .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; }
+.footer-brand { color: #FFFFFF; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 15px; font-weight: 600; }
-.footer-links a { color: var(--body); text-decoration: none; }
-.footer-links a:hover { color: var(--ink); }
-.footer-fine { font-size: 13px; color: var(--muted); }
+.footer-links a { color: #D6E2DB; text-decoration: none; padding-block: 10px; transition: color .15s var(--ease); }
+.footer-links a:hover { color: #FFFFFF; text-decoration: underline; text-underline-offset: 4px; }
+.footer-fine { font-size: 13px; color: #A9C2B6; }
+.footer :focus-visible { outline-color: var(--accent); }
 
 /* Responsive */
 @media (max-width: 1080px) {

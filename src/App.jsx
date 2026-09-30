@@ -105,7 +105,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-inner">
-        <a href="#top" className="nav-brand"><Logo size={26} /><span>Mindleaf</span></a>
+        <a href="#top" className="nav-brand footer-brand" aria-label="Mindleaf, back to top"><Logo size={30} variant="reversed" /><span>Mindleaf</span></a>
         <nav className="footer-links" aria-label="Footer">
           <a href="#about">About</a>
           <a href="#authors">For authors &amp; publishers</a>

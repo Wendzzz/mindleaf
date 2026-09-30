@@ -1,11 +1,18 @@
 import { motion } from 'motion/react'
 
-export function Logo({ size = 30 }) {
+// Brand mark. "default" is for light backgrounds; "reversed" swaps the colours for the green footer,
+// where a green tile would disappear.
+const LOGO_COLORS = {
+  default: { tile: '#1F4034', leaf: '#FF8A45', vein: '#1F4034' },
+  reversed: { tile: '#FF8A45', leaf: '#1F4034', vein: '#FF8A45' },
+}
+export function Logo({ size = 30, variant = 'default' }) {
+  const c = LOGO_COLORS[variant]
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
-      <rect width="32" height="32" rx="9" fill="#1F4034" />
-      <path d="M8.5 23.5c0-8.6 5.8-14.5 15-14.5 0 9.7-5.9 15.5-14.2 15.5z" fill="#FF8A45" />
-      <path d="M9.5 22.5 18 14" stroke="#1F4034" strokeWidth="1.8" strokeLinecap="round" />
+      <rect width="32" height="32" rx="9" fill={c.tile} />
+      <path d="M8.5 23.5c0-8.6 5.8-14.5 15-14.5 0 9.7-5.9 15.5-14.2 15.5z" fill={c.leaf} />
+      <path d="M9.5 22.5 18 14" stroke={c.vein} strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   )
 }
