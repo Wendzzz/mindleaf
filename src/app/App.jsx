@@ -63,7 +63,7 @@ export default function App() {
         <div className="proto">
           <aside className="proto-side">
             <a href="../" className="proto-brand"><Logo size={32} /><span>Mindleaf</span></a>
-            <h1>App prototype</h1>
+            <p className="proto-title">App prototype</p>
             <p>Tap through Mindleaf like a real phone app. Choices carry between screens: pick goals, finish Day 4, and Home updates.</p>
             <p className="fine">Prototype only. No account is created, nothing is sent and no payment is taken.</p>
             <div className="proto-actions">
