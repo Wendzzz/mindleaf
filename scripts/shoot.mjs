@@ -16,6 +16,7 @@ async function run(name, viewport, steps) {
   page.on('console', (m) => { if (m.type() === 'error') errors.push(`[${name}] ${m.text()}`) })
   page.on('pageerror', (e) => errors.push(`[${name}] ${e.message}`))
   await page.goto(url, { waitUntil: 'networkidle' })
+  await page.addStyleTag({ content: 'html { scroll-behavior: auto !important; }' })
   for (const [label, fn] of steps) {
     await fn(page)
     await page.screenshot({ path: new URL(`${name}-${label}.png`, out).pathname })
@@ -28,7 +29,7 @@ const at = (sel, extra = 0, wait = 1400) => async (p) => {
   await p.waitForTimeout(wait)
 }
 const dayAt = (frac) => async (p) => {
-  await p.evaluate((f) => { const el = document.querySelector('#how'); const top = el.offsetTop; window.scrollTo(0, top + (el.offsetHeight - innerHeight) * f) }, frac)
+  await p.evaluate((f) => { const el = document.querySelector('#how'); const top = el.getBoundingClientRect().top + window.scrollY; window.scrollTo(0, top + (el.offsetHeight - innerHeight) * f) }, frac)
   await p.waitForTimeout(1600)
 }
 
@@ -52,6 +53,7 @@ const steps = (mobile) => [
 
 await run('desktop', { width: 1440, height: 900 }, steps(false))
 await run('mobile', { width: 390, height: 844 }, steps(true))
+await run('safari', { width: 390, height: 664 }, steps(true))
 
 await browser.close()
 await server.close()

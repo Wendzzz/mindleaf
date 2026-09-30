@@ -90,7 +90,7 @@ p { margin: 0; }
 .nav-actions { display: flex; align-items: center; gap: 12px; justify-self: end; }
 .nav-signin { font-size: 15px; font-weight: 700; color: var(--ink); text-decoration: none; padding: 10px 6px; }
 .nav-signin:hover { color: var(--accent-text); }
-.nav-menu { display: none; width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); align-items: center; justify-content: center; cursor: pointer; }
+.nav-menu { display: none; width: 52px; height: 52px; border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); align-items: center; justify-content: center; cursor: pointer; }
 .nav-sheet { max-width: 1200px; margin: 8px auto 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 24px; padding: 8px; display: flex; flex-direction: column; box-shadow: 0 20px 40px -20px rgba(22, 24, 27, .35); }
 .nav-sheet a { display: flex; align-items: center; gap: 8px; padding: 14px 16px; border-radius: 16px; color: var(--ink); text-decoration: none; font-weight: 700; font-size: 17px; }
 .nav-sheet a:hover { background: var(--bg); }
@@ -360,6 +360,28 @@ p { margin: 0; }
   .plans { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 600px) {
+  .nav-menu svg { width: 26px; height: 26px; }
+  .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; }
+  .hero-ctas .btn { width: 100%; }
+  /* How it works: start below the floating nav so the heading is never cut */
+  .day-sticky { align-items: flex-start; padding-top: 96px; }
+  .day-grid { gap: 4px; align-content: start; }
+  .day-copy { gap: 10px; }
+  .day-h { font-size: 24px; }
+  .day-step { min-height: 128px; }
+  .day-time { font-size: 34px; }
+  .day-title { font-size: 20px; }
+  .day-body { font-size: 15px; line-height: 1.5; }
+  .day-visual { height: 300px; }
+  .phone { transform: scale(.46); margin-top: 0; top: 0; }
+  /* Library: two books visible at once */
+  .shelf { gap: 18px; padding: 0 8px; }
+  .book { width: 150px; }
+  .book-cover-wrap { height: 226px; margin-bottom: 30px; }
+  .book-cover-wrap::after { left: -9px; right: -9px; height: 12px; bottom: -12px; }
+  .book-cover { height: 218px; }
+  .book-title { font-size: 15px; }
+  .book-author { font-size: 13px; }
   .container { padding-inline: 16px; }
   body { font-size: 16px; }
   .nav-signin { display: none; }

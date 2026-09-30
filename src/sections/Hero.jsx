@@ -1,5 +1,5 @@
-import { motion, useReducedMotion } from 'motion/react'
-import { Fragment } from 'react'
+import { motion, useInView, useReducedMotion } from 'motion/react'
+import { Fragment, useRef } from 'react'
 import { COVERS, PLAN_DAYS } from '../data.js'
 import { Icon, Scribble } from '../ui.jsx'
 
@@ -25,14 +25,17 @@ function Words({ text, delay = 0 }) {
 // A plan deals itself out into days: the page's one big orchestrated moment.
 function BookFan() {
   const reduce = useReducedMotion()
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, amount: 0.35 })
+  const go = inView || reduce
   const mid = (PLAN_DAYS.length - 1) / 2
   return (
-    <div className="fan" aria-label="A reading plan split into daily readings: 3 of 14 days done, day 4 is today">
+    <div className="fan" ref={ref} aria-label="A reading plan split into daily readings: 3 of 14 days done, day 4 is today">
       <motion.div
         className="fan-note"
         initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.7, duration: 0.5 }}
+        animate={go ? { opacity: 1, y: 0 } : undefined}
+        transition={{ delay: 1.3, duration: 0.5 }}
       >
         <span>14 mornings · 8 min each</span>
         <svg viewBox="0 0 80 60" aria-hidden="true">
@@ -43,11 +46,11 @@ function BookFan() {
             strokeWidth="2.5"
             strokeLinecap="round"
             initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ delay: 1.9, duration: 0.6 }}
+            animate={go ? { pathLength: 1 } : undefined}
+            transition={{ delay: 1.5, duration: 0.6 }}
           />
           <motion.path d="M54 42 L62 52 L70 42" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.4 }} />
+            initial={{ opacity: 0 }} animate={go ? { opacity: 1 } : undefined} transition={{ delay: 2 }} />
         </svg>
       </motion.div>
 
@@ -62,9 +65,9 @@ function BookFan() {
             className={`fan-card is-${d.state}`}
             style={{ zIndex: d.state === 'today' ? 20 : 10 - Math.abs(off) }}
             initial={reduce ? false : { opacity: 0, rotate: 0, x: 0, y: 150 }}
-            animate={{ opacity: 1, rotate, x, y }}
+            animate={go ? { opacity: 1, rotate, x, y } : undefined}
             whileHover={{ y: y - 18, transition: { duration: 0.2, ease: 'easeOut' } }}
-            transition={{ delay: 0.9 + i * 0.06, duration: 0.9, ease }}
+            transition={{ delay: 0.5 + i * 0.06, duration: 0.9, ease }}
           >
             <div className="fan-card-top">
               <span className="fan-day">Day {d.day}</span>
@@ -81,13 +84,13 @@ function BookFan() {
       <motion.div
         className="fan-progress"
         initial={reduce ? false : { opacity: 0, x: '-50%', y: 16 }}
-        animate={{ opacity: 1, x: '-50%', y: 0 }}
-        transition={{ delay: 0.4, duration: 0.6, ease }}
+        animate={go ? { opacity: 1, x: '-50%', y: 0 } : undefined}
+        transition={{ delay: 0.15, duration: 0.6, ease }}
       >
         <span className="fan-progress-dot"><Icon.check /></span>
         <span className="fan-progress-text"><strong>3 of 14 days</strong> done</span>
         <span className="fan-progress-bar" aria-hidden="true">
-          <motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 3 / 14 }} transition={{ delay: 1.6, duration: 0.8, ease }} />
+          <motion.span initial={{ scaleX: 0 }} animate={go ? { scaleX: 3 / 14 } : undefined} transition={{ delay: 1.2, duration: 0.8, ease }} />
         </span>
       </motion.div>
     </div>

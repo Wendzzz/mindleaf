@@ -95,7 +95,7 @@ export default function DayScroll() {
         <div className="container day-grid">
           <div className="day-copy">
             <Eyebrow tone="on-sky">How it works · a day with Mindleaf</Eyebrow>
-            <h2 className="h2 day-h">One book.<br />Three small moments a day.</h2>
+            <h2 className="h2 day-h">One book.{' '}<br />Three small moments a day.</h2>
             <div className="day-step" aria-live="polite">
               <AnimatePresence mode="wait">
                 <motion.div
