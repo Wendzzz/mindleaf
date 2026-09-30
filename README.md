@@ -1,16 +1,16 @@
-# Mindleaf — landing page and app prototype
+# Mindleaf — landing page and web app
 
 One-page site for Mindleaf, the app that turns personal growth books into ten-minute daily readings with an action and a reflection question. It is a standalone Vite + React + Motion project that doesn't touch the Piralax site in the parent folder.
 
-Two pages: the landing page at `/` and a tappable app prototype at `/app/` (20 screens: sign in, onboarding, the daily read → try it → reflect loop, library, journal, book club, profile and Plus). The website's Sign in, Start reading free and Start Day 1 buttons open the prototype.
+Two pages: the landing page at `/` and the Mindleaf web app at `/app/`, an installable progressive web app (PWA) with email-code and Google sign-in through Supabase. Without Supabase keys the app runs in demo mode, with accounts saved in the browser only. See **[SETUP.md](SETUP.md)** to make it live.
 
 ```bash
 npm install
 npm run dev      # local dev server
 npm run build    # production build in dist/
 npm run shoot    # build, then save desktop and mobile screenshots to out/
-npm run shoot:app  # screenshot every prototype screen to out/app/
-npm run test:flow  # click through sign in → onboarding → Day 4 → Home in a real browser
+npm test          # streak rules, full sign-up → Day 1 → reload → sign-out flow, and PWA/offline checks
+npm run icons     # regenerate the app icons from the leaf mark
 ```
 
 ## Sections

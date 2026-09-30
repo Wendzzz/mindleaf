@@ -83,9 +83,10 @@ export function TabBar({ active }) {
   const { go } = useNav()
   return (
     <nav className="tabbar" aria-label="Main">
+      <span className="tab-brand" aria-hidden="true"><Logo size={28} /><span>Mindleaf</span></span>
       {TABS.map((t) => t.center ? (
-        <button key={t.id} type="button" className="tab-center" aria-label="Today's reading" onClick={() => go(t.id)}>
-          <span><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M8.5 23.5c0-8.6 5.8-14.5 15-14.5 0 9.7-5.9 15.5-14.2 15.5z" fill="#FFFFFF" /><path d="M9.5 22.5 18 14" stroke="#CC4A0A" strokeWidth="1.8" strokeLinecap="round" /></svg></span>
+        <button key={t.id} type="button" className="tab-center" aria-label="Today’s reading" onClick={() => go(t.id)}>
+          <span><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M8.5 23.5c0-8.6 5.8-14.5 15-14.5 0 9.7-5.9 15.5-14.2 15.5z" fill="#FFFFFF" /><path d="M9.5 22.5 18 14" stroke="#CC4A0A" strokeWidth="1.8" strokeLinecap="round" /></svg><em className="tab-center-label">Today’s reading</em></span>
         </button>
       ) : (
         <button key={t.id} type="button" className={`tab ${active === t.id ? 'on' : ''}`} aria-current={active === t.id ? 'page' : undefined} onClick={() => go(t.id)}>

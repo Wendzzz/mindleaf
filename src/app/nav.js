@@ -1,7 +1,6 @@
 import { createContext, useContext } from 'react'
 
-// Navigation + shared prototype state, provided by App.jsx.
-// go(id) moves forward, back(id) moves back to a named screen; state carries the user's choices between screens.
+// Navigation + signed-in data, provided by App.jsx.
 export const NavContext = createContext(null)
 export const useNav = () => useContext(NavContext)
 
@@ -22,26 +21,11 @@ export const TIMES = {
   night: { label: 'Before bed', hint: 'Instead of scrolling', time: '9:30 PM' },
 }
 
-export const DAY1 = {
-  atomic: 'Tiny changes add up',
-  money: 'No one is crazy',
-  deep: 'Why focus is rare',
-  mindset: 'Two ways to see ability',
-  seven: 'Change starts inside',
-}
+// Screens anyone can see, screens for finishing sign-up, and everything else needs an account.
+export const PUBLIC = ['welcome', 'signin', 'verify']
+export const ONBOARDING = ['goals', 'schedule', 'firstplan', 'reminders']
 
-export const INITIAL_STATE = {
-  email: 'ada@example.com',
-  goals: ['habits', 'money'],
-  time: 'morning',
-  minutes: 10,
-  plan: 'atomic',
-  mode: 'app',
-  remind: true,
-  middayReminder: true,
-  actions: { a: true },
-  answer: 'Reaching for my phone the second I wake up. It charges right next to my bed.',
-  dayDone: false,
-  plus: false,
-  chat: [],
+export const greeting = (d = new Date()) => {
+  const h = d.getHours()
+  return h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening'
 }
