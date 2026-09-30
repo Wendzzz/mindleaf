@@ -1,0 +1,5 @@
+# Temporary: an earlier app on this address left a cached copy (and possibly a service worker)
+# on some phones. Ask browsers to drop stored data for the site so they load the current page.
+# Remove this block once old visitors have refreshed.
+/
+  Clear-Site-Data: "cache", "storage"
