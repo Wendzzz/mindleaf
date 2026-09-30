@@ -11,9 +11,6 @@ export const COVERS = {
 
 export const PHOTOS = {
   band: img('band.jpg'),
-  am: img('am.jpg'),
-  noon: img('noon.jpg'),
-  pm: img('pm.jpg'),
 }
 
 // The first week of the Atomic Habits plan, shown fanned out in the hero.
@@ -42,8 +39,6 @@ export const MOMENTS = [
     label: 'Morning',
     title: 'Read today’s page',
     body: 'One idea in about eight minutes. Read it in the app, or read the day’s pages in your own copy: paper, Kindle or audiobook.',
-    photo: PHOTOS.am,
-    photoAlt: 'Coffee steaming next to an open book on a window sill',
   },
   {
     id: 'midday',
@@ -51,8 +46,6 @@ export const MOMENTS = [
     label: 'Midday',
     title: 'Try one small thing',
     body: 'Every reading ends with an action you can do before dinner. Small enough that it actually happens.',
-    photo: PHOTOS.noon,
-    photoAlt: 'A hand writing with a pencil in a spiral notebook',
   },
   {
     id: 'evening',
@@ -60,8 +53,6 @@ export const MOMENTS = [
     label: 'Evening',
     title: 'Sit with a question',
     body: 'Write a line before bed. Your answers turn into a journal of what each book changed.',
-    photo: PHOTOS.pm,
-    photoAlt: 'A person writing in a small journal',
   },
 ]
 

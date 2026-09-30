@@ -120,18 +120,6 @@ export default function DayScroll() {
             </div>
           </div>
           <div className="day-visual">
-            <AnimatePresence mode="popLayout">
-              <motion.img
-                key={m.photo}
-                src={m.photo}
-                alt={m.photoAlt}
-                className="polaroid"
-                initial={{ opacity: 0, rotate: -14, x: -30, y: 20 }}
-                animate={{ opacity: 1, rotate: -7, x: 0, y: 0 }}
-                exit={{ opacity: 0, rotate: 4, x: 30 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </AnimatePresence>
             <div className="phone">
               <div className="phone-screen">
                 <AnimatePresence mode="wait">

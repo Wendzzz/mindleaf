@@ -20,9 +20,9 @@ export default function Pricing() {
           </Reveal>
           <Reveal className="plan plan-plus" delay={0.08}>
             <span className="plan-name">Mindleaf Plus</span>
-            <span className="plan-price">[YOUR PRICE] <small>per month</small></span>
+            <span className="plan-price">₦5,000 <small>per month</small></span>
             <ul>{PLUS.map((f) => <li key={f}><Icon.check /> {f}</li>)}</ul>
-            <a href="#start" className="btn btn-orange">Try Plus free for 7 days</a>
+            <a href="#start" className="btn btn-orange">Get Mindleaf Plus</a>
           </Reveal>
         </div>
       </div>
