@@ -20,7 +20,7 @@ export default function FinalCta() {
             <span className="hl">ten minutes.<Scribble inView delay={0.3} /></span>
           </h2>
         </Reveal>
-        <Reveal delay={0.1}><p className="lede center">Mindleaf is coming to iPhone and Android. Join the waitlist and we’ll send you Day 1 the morning we launch.</p></Reveal>
+        <Reveal delay={0.1}><p className="lede center">Join the waitlist and we’ll send you Day 1 the morning we launch.</p></Reveal>
         <Reveal delay={0.15} className="final-form-wrap">
           <AnimatePresence mode="wait" initial={false}>
             {status === 'done' ? (
@@ -45,10 +45,6 @@ export default function FinalCta() {
             )}
           </AnimatePresence>
           {status === 'error' && <p id="email-error" className="form-error">Enter an email address like name@example.com.</p>}
-        </Reveal>
-        <Reveal delay={0.2} className="stores">
-          <span className="store"><Icon.apple /> iPhone · coming soon</span>
-          <span className="store"><Icon.play /> Android · coming soon</span>
         </Reveal>
       </div>
     </section>

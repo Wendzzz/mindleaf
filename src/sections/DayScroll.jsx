@@ -75,6 +75,25 @@ const SCREENS = [ReadScreen, ActScreen, ReflectScreen]
 
 export default function DayScroll() {
   const ref = useRef(null)
+  const stickyRef = useRef(null)
+  const visualRef = useRef(null)
+  const [phoneScale, setPhoneScale] = useState(null)
+
+  // On phones, size the mockup to whatever height is left under the copy, so it is never cut off.
+  useEffect(() => {
+    const fit = () => {
+      const sticky = stickyRef.current
+      const visual = visualRef.current
+      if (!sticky || !visual) return
+      if (!window.matchMedia('(max-width: 900px)').matches) { setPhoneScale(null); return }
+      const room = sticky.clientHeight - (visual.getBoundingClientRect().top - sticky.getBoundingClientRect().top) - 20
+      setPhoneScale(Math.max(0.36, Math.min(0.72, room / 640)))
+    }
+    fit()
+    document.fonts?.ready.then(fit)
+    window.addEventListener('resize', fit)
+    return () => window.removeEventListener('resize', fit)
+  }, [])
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
   const bg = useTransform(scrollYProgress, STOPS, SKY)
@@ -90,7 +109,7 @@ export default function DayScroll() {
 
   return (
     <section id="how" ref={ref} className="day">
-      <motion.div className="day-sticky" style={{ backgroundColor: bg, color: ink }}>
+      <motion.div className="day-sticky" ref={stickyRef} style={{ backgroundColor: bg, color: ink, ...(phoneScale ? { '--phone-scale': phoneScale } : {}) }}>
         {!reduce && <motion.span className="sun" style={{ left: sunX, top: sunY, backgroundColor: sunColor }} aria-hidden="true" />}
         <div className="container day-grid">
           <div className="day-copy">
@@ -119,7 +138,7 @@ export default function DayScroll() {
               </div>
             </div>
           </div>
-          <div className="day-visual">
+          <div className="day-visual" ref={visualRef}>
             <div className="phone">
               <div className="phone-screen">
                 <AnimatePresence mode="wait">

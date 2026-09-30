@@ -320,8 +320,6 @@ p { margin: 0; }
 .final-form input::placeholder { color: #8A8E93; }
 .form-error { margin-top: 10px; font-size: 14px; font-weight: 700; color: #A3301B; }
 .form-done { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; background: var(--sage); color: var(--ink); font-size: 17px; font-weight: 800; }
-.stores { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.store { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--rule); font-size: 14px; font-weight: 700; color: var(--muted); }
 
 /* Footer */
 .footer { border-top: 1px solid var(--rule); padding-block: 32px; }
@@ -364,7 +362,7 @@ p { margin: 0; }
   .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; }
   .hero-ctas .btn { width: 100%; }
   /* How it works: start below the floating nav so the heading is never cut */
-  .day-sticky { align-items: flex-start; padding-top: 84px; }
+  .day-sticky { align-items: flex-start; padding-top: 94px; }
   .day-grid { gap: 8px; align-content: start; }
   .day-copy { gap: 10px; }
   .day-h { font-size: 24px; }
@@ -372,8 +370,9 @@ p { margin: 0; }
   .day-time { font-size: 34px; }
   .day-title { font-size: 20px; }
   .day-body { display: none; }
-  .day-visual { height: 340px; }
-  .phone { transform: scale(.52); margin-top: 0; top: 0; }
+  .day-visual { height: calc(640px * var(--phone-scale, .5)); }
+  .phone { transform: scale(var(--phone-scale, .5)); margin-top: 0; top: 0; }
+  .streak { padding-top: 40px; }
   /* Library: two books visible at once */
   .shelf { gap: 18px; padding: 0 8px; }
   .book { width: 150px; }
@@ -403,10 +402,6 @@ p { margin: 0; }
   .tick { font-size: 15px; }
   .final-form { flex-direction: column; border-radius: 24px; }
   .final-form .btn { width: 100%; }
-}
-@media (max-width: 600px) and (min-height: 760px) {
-  .day-visual { height: 460px; }
-  .phone { transform: scale(.7); }
 }
 @media (max-width: 420px) {
   .nav .btn-sm { display: none; }
