@@ -96,7 +96,7 @@ export default function Clubs() {
             <Reveal><Eyebrow>Book clubs · new</Eyebrow></Reveal>
             <Reveal delay={0.05}><h2 className="h2">Start a plan with friends. <span className="accent-text">Finish it together.</span></h2></Reveal>
             <Reveal delay={0.1}><p className="lede">Invite your book club, your partner or your team. Everyone reads the same page each day and shares what they tried.</p></Reveal>
-            <Reveal delay={0.15}><a href="#start" className="btn btn-ghost">Create a group plan</a></Reveal>
+            <Reveal delay={0.15}><a href="./app/#/club" className="btn btn-ghost">Create a group plan</a></Reveal>
           </div>
           <Chat />
         </div>

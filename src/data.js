@@ -1,5 +1,6 @@
 // Static content for the landing page. Covers from Open Library, photos from Unsplash.
-const img = (p) => `${import.meta.env.BASE_URL}img/${p}`
+// Root-relative so the same paths work on the landing page and inside /app/.
+const img = (p) => `/img/${p}`
 
 export const COVERS = {
   atomic: img('covers/atomic-habits.jpg'),

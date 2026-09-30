@@ -39,7 +39,7 @@ export default function Library() {
                   exit={{ opacity: 0, y: 30, scale: 0.9 }}
                   transition={{ type: 'spring', stiffness: 260, damping: 26, delay: i * 0.04 }}
                 >
-                  <a href="#start" className="book-link" aria-label={`${b.title} by ${b.author}, ${b.days} days, ${b.mins} minutes a day`}>
+                  <a href="./app/#/library" className="book-link" aria-label={`${b.title} by ${b.author}, ${b.days} days, ${b.mins} minutes a day`}>
                     <span className="book-cover-wrap">
                       <img src={b.cover} alt="" className="book-cover" loading="lazy" />
                       <span className="book-tag"><Icon.clock /> {b.days} days · {b.mins} min</span>

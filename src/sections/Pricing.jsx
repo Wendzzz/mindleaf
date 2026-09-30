@@ -16,13 +16,13 @@ export default function Pricing() {
             <span className="plan-name">Starter</span>
             <span className="plan-price">Free <small>forever</small></span>
             <ul>{FREE.map((f) => <li key={f}><Icon.check /> {f}</li>)}</ul>
-            <a href="#start" className="btn btn-ghost">Start Day 1</a>
+            <a href="./app/" className="btn btn-ghost">Start Day 1</a>
           </Reveal>
           <Reveal className="plan plan-plus" delay={0.08}>
             <span className="plan-name">Mindleaf Plus</span>
             <span className="plan-price">₦5,000 <small>per month</small></span>
             <ul>{PLUS.map((f) => <li key={f}><Icon.check /> {f}</li>)}</ul>
-            <a href="#start" className="btn btn-orange">Get Mindleaf Plus</a>
+            <a href="./app/#/paywall" className="btn btn-orange">Get Mindleaf Plus</a>
           </Reveal>
         </div>
       </div>

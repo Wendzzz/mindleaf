@@ -119,7 +119,7 @@ export default function Hero() {
             Mindleaf breaks big self-help books into ten-minute daily readings. Each one ends with a small thing to try and a question to think about, so the ideas actually stick.
           </motion.p>
           <motion.div className="hero-ctas" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.85, duration: 0.6 }}>
-            <a href="#start" className="btn btn-orange btn-lg">Start Day 1 free <Icon.arrow /></a>
+            <a href="./app/" className="btn btn-orange btn-lg">Start Day 1 free <Icon.arrow /></a>
             <a href="#how" className="btn btn-ghost btn-lg">See how a day works</a>
           </motion.div>
           <motion.div className="hero-proof" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1 }}>

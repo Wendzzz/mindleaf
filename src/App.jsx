@@ -71,8 +71,8 @@ function Nav() {
           })}
         </div>
         <div className="nav-actions">
-          <a href="#login" className="nav-signin">Sign in</a>
-          <a href="#start" className="btn btn-orange btn-sm">Start reading free</a>
+          <a href="./app/#/signin" className="nav-signin">Sign in</a>
+          <a href="./app/" className="btn btn-orange btn-sm">Start reading free</a>
           <button type="button" className="nav-menu" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
             {open ? <Icon.close /> : <Icon.menu />}
           </button>
@@ -93,7 +93,7 @@ function Nav() {
                 {l.tag && <span className="nav-tag">{l.tag}</span>}
               </a>
             ))}
-            <a href="#login" onClick={() => setOpen(false)}>Sign in</a>
+            <a href="./app/#/signin" onClick={() => setOpen(false)}>Sign in</a>
           </motion.div>
         )}
       </AnimatePresence>
