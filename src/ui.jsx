@@ -47,6 +47,22 @@ export function Scribble({ delay = 0, inView = false, className = '' }) {
   )
 }
 
+// Each section slides up into place as it enters, so the page reads as a stack of panels.
+// A deliberate marketing entrance, longer than the 300ms chrome limit on purpose.
+export function SlideUp({ children }) {
+  return (
+    <motion.div
+      className="slide-up"
+      initial={{ y: 120, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true, margin: '0px 0px -12% 0px' }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
 // Fade-and-rise when a block scrolls into view.
 export function Reveal({ children, delay = 0, y = 28, className = '', as = 'div' }) {
   const M = motion[as]

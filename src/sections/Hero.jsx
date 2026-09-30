@@ -22,12 +22,12 @@ function Words({ text, delay = 0 }) {
   ))
 }
 
-// A book deals itself out into days: the page's one big orchestrated moment.
+// A plan deals itself out into days: the page's one big orchestrated moment.
 function BookFan() {
   const reduce = useReducedMotion()
   const mid = (PLAN_DAYS.length - 1) / 2
   return (
-    <div className="fan" aria-label="Atomic Habits split into daily readings, day 4 is today">
+    <div className="fan" aria-label="A reading plan split into daily readings: 3 of 14 days done, day 4 is today">
       <motion.div
         className="fan-note"
         initial={{ opacity: 0, y: 10 }}
@@ -78,14 +78,18 @@ function BookFan() {
         )
       })}
 
-      <motion.img
-        src={COVERS.atomic}
-        alt="Atomic Habits by James Clear"
-        className="fan-cover"
-        initial={reduce ? false : { opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
+      <motion.div
+        className="fan-progress"
+        initial={reduce ? false : { opacity: 0, x: '-50%', y: 16 }}
+        animate={{ opacity: 1, x: '-50%', y: 0 }}
         transition={{ delay: 0.4, duration: 0.6, ease }}
-      />
+      >
+        <span className="fan-progress-dot"><Icon.check /></span>
+        <span className="fan-progress-text"><strong>3 of 14 days</strong> done</span>
+        <span className="fan-progress-bar" aria-hidden="true">
+          <motion.span initial={{ scaleX: 0 }} animate={{ scaleX: 3 / 14 }} transition={{ delay: 1.6, duration: 0.8, ease }} />
+        </span>
+      </motion.div>
     </div>
   )
 }

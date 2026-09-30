@@ -34,7 +34,8 @@ const dayAt = (frac) => async (p) => {
 
 const steps = (mobile) => [
   ['01-hero', async (p) => p.waitForTimeout(3200)],
-  ['02-pile', at('.pile', mobile ? 0 : -60)],
+  ['02a-pile-sliding', at('.pile', mobile ? 0 : -60, 250)],
+  ['02-pile', async (p) => p.waitForTimeout(1200)],
   ['03-morning', dayAt(0.12)],
   ['04-midday', dayAt(0.5)],
   ['05-evening', dayAt(0.92)],
@@ -43,7 +44,8 @@ const steps = (mobile) => [
   ['08-manifesto', at('.manifesto', 120, 800)],
   ['09-library', at('#library', -80)],
   ['10-library-hover', async (p) => { if (!mobile) { await p.hover('.book:nth-child(2) .book-link'); await p.waitForTimeout(500) } }],
-  ['11-clubs', at('#clubs', -80, 3200)],
+  ['11-clubs', at('#clubs', -80, 1400)],
+  ['11b-clubs-later', async (p) => p.waitForTimeout(4200)],
   ['12-pricing', at('#pricing', -80)],
   ['13-final', at('#start', -80)],
 ]

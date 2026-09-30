@@ -9,7 +9,7 @@ import Manifesto from './sections/Manifesto.jsx'
 import Pile from './sections/Pile.jsx'
 import Pricing from './sections/Pricing.jsx'
 import Streak from './sections/Streak.jsx'
-import { Icon, Logo } from './ui.jsx'
+import { Icon, Logo, SlideUp } from './ui.jsx'
 
 const LINKS = [
   { href: '#how', label: 'How it works' },
@@ -125,14 +125,14 @@ export default function App() {
       <Nav />
       <main id="main">
         <Hero />
-        <Pile />
-        <DayScroll />
-        <Streak />
-        <Manifesto />
-        <Library />
-        <Clubs />
-        <Pricing />
-        <FinalCta />
+        <SlideUp><Pile /></SlideUp>
+        <SlideUp><DayScroll /></SlideUp>
+        <SlideUp><Streak /></SlideUp>
+        <SlideUp><Manifesto /></SlideUp>
+        <SlideUp><Library /></SlideUp>
+        <SlideUp><Clubs /></SlideUp>
+        <SlideUp><Pricing /></SlideUp>
+        <SlideUp><FinalCta /></SlideUp>
       </main>
       <Footer />
     </MotionConfig>

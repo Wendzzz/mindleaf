@@ -66,8 +66,17 @@ export const BOOKS = [
 
 export const TOPICS = ['All', 'Habits', 'Money', 'Focus', 'Mindset']
 
+export const CLUB_MEMBERS = [
+  { who: 'Tobi', initials: 'TK', color: '#FF8A45' },
+  { who: 'Ada', initials: 'AO', color: '#7FB89D' },
+  { who: 'You', initials: 'ME', color: '#1F4034' },
+]
+
+// The group chat plays as a loop: someone types, their message lands, the next person types.
 export const CLUB_CHAT = [
-  { who: 'Tobi', initials: 'TK', color: '#FF8A45', text: 'Moved my savings to an account I don’t see every day. Out of sight really works.', me: false },
-  { who: 'Ada', initials: 'AO', color: '#7FB89D', text: 'Same idea as the Atomic Habits plan! Make the bad cue invisible.', me: false },
-  { who: 'You', initials: 'ME', color: '#1F4034', text: 'Finally set up the automatic transfer. Day 9 done.', me: true },
+  { who: 'Tobi', text: 'Moved my savings to an account I don’t see every day. Out of sight really works.' },
+  { who: 'Ada', text: 'Same idea as the Atomic Habits plan! Make the bad cue invisible.' },
+  { who: 'You', text: 'Finally set up the automatic transfer. Day 9 done.', me: true },
+  { who: 'Ada', text: 'Today’s question got me. What does “enough” look like for me?' },
+  { who: 'Tobi', text: 'Writing mine tonight. See you all on Day 10.' },
 ]

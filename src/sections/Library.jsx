@@ -53,9 +53,6 @@ export default function Library() {
           </motion.ul>
         </div>
 
-        <Reveal className="lib-foot">
-          <p>Read in the app, or bring your own copy. Every plan tells you exactly which pages to read each day.</p>
-        </Reveal>
       </div>
     </section>
   )
