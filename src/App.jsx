@@ -126,7 +126,7 @@ export default function App() {
       <main id="main">
         <Hero />
         <SlideUp><Pile /></SlideUp>
-        <SlideUp><DayScroll /></SlideUp>
+        <SlideUp plain><DayScroll /></SlideUp>
         <SlideUp><Streak /></SlideUp>
         <SlideUp><Manifesto /></SlideUp>
         <SlideUp><Library /></SlideUp>

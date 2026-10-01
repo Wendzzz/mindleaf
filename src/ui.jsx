@@ -54,16 +54,24 @@ export function Scribble({ delay = 0, inView = false, className = '' }) {
   )
 }
 
-// Each section slides up into place as it enters, so the page reads as a stack of panels.
-// A deliberate marketing entrance, longer than the 300ms chrome limit on purpose.
-export function SlideUp({ children }) {
+// Each section rides up from below and settles over the one before it, like a
+// card dropping into a stack — shadow and rounded top corners sell the cover,
+// then flatten once it has landed. A deliberate marketing entrance, longer
+// than the 300ms chrome limit on purpose.
+// `plain` skips the rounded-corner/overflow treatment for sections that pin
+// their own content mid-scroll (DayScroll), so this entrance never clips them.
+export function SlideUp({ children, plain = false }) {
   return (
     <motion.div
-      className="slide-up"
-      initial={{ y: 120, opacity: 0 }}
-      whileInView={{ y: 0, opacity: 1 }}
+      className={plain ? 'slide-up' : 'stack-panel'}
+      initial={plain
+        ? { y: 120, opacity: 0 }
+        : { y: 160, opacity: 0, scale: 0.97, borderRadius: 32, boxShadow: '0 -60px 70px -40px rgba(22, 24, 27, .35)' }}
+      whileInView={plain
+        ? { y: 0, opacity: 1 }
+        : { y: 0, opacity: 1, scale: 1, borderRadius: 0, boxShadow: '0 0 0 0 rgba(22, 24, 27, 0)' }}
       viewport={{ once: true, margin: '0px 0px -12% 0px' }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
