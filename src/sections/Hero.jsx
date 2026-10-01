@@ -22,6 +22,35 @@ function Words({ text, delay = 0 }) {
   ))
 }
 
+// The open book the plan's days fan out of. Idles with a slow page-turn loop
+// once it has landed, so the hero reads as a living illustration rather than
+// a one-shot entrance.
+function BookSpine({ go, reduce }) {
+  return (
+    <motion.svg
+      className="fan-book"
+      viewBox="0 0 420 300"
+      aria-hidden="true"
+      initial={{ opacity: 0, scale: 0.92 }}
+      animate={go ? { opacity: 1, scale: 1 } : undefined}
+      transition={{ delay: 0.25, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <path d="M210 40 C 120 10, 30 24, 10 52 L 10 230 C 30 204, 120 192, 210 220 Z" fill="var(--surface)" stroke="var(--rule)" />
+      <path d="M210 40 C 300 10, 390 24, 410 52 L 410 230 C 390 204, 300 192, 210 220 Z" fill="var(--surface)" stroke="var(--rule)" />
+      <path d="M210 40 L 210 220" stroke="var(--rule)" strokeWidth="2" />
+      {!reduce && (
+        <motion.path
+          d="M210 40 C 260 16, 320 22, 360 44 L 360 212 C 320 192, 260 186, 210 206 Z"
+          fill="var(--panel)"
+          style={{ transformOrigin: '210px 128px' }}
+          animate={{ rotateY: [0, 170, 170, 0] }}
+          transition={{ duration: 6, times: [0, 0.18, 0.82, 1], repeat: Infinity, repeatDelay: 1.6, ease: 'easeInOut' }}
+        />
+      )}
+    </motion.svg>
+  )
+}
+
 // A plan deals itself out into days: the page's one big orchestrated moment.
 function BookFan() {
   const reduce = useReducedMotion()
@@ -30,7 +59,14 @@ function BookFan() {
   const go = inView || reduce
   const mid = (PLAN_DAYS.length - 1) / 2
   return (
-    <div className="fan" ref={ref} aria-label="A reading plan split into daily readings: 3 of 14 days done, day 4 is today">
+    <motion.div
+      className="fan"
+      ref={ref}
+      aria-label="A reading plan split into daily readings: 3 of 14 days done, day 4 is today"
+      animate={go && !reduce ? { y: [0, -10, 0] } : undefined}
+      transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.8 }}
+    >
+      <BookSpine go={go} reduce={reduce} />
       <motion.div
         className="fan-note"
         initial={{ opacity: 0, y: 10 }}
@@ -93,7 +129,7 @@ function BookFan() {
           <motion.span initial={{ scaleX: 0 }} animate={go ? { scaleX: 3 / 14 } : undefined} transition={{ delay: 1.2, duration: 0.8, ease }} />
         </span>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }
 
