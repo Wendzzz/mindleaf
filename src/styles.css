@@ -39,6 +39,8 @@ p { margin: 0; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 ::selection { background: var(--accent); color: var(--ink); }
 
+.stack-panel { position: relative; overflow: hidden; background: var(--bg); }
+
 .container { max-width: 1200px; margin: 0 auto; padding-inline: 24px; }
 .section { padding-block: 96px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -78,6 +80,9 @@ p { margin: 0; }
 }
 .is-scrolled .nav { background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--rule); box-shadow: 0 10px 30px -18px rgba(22, 24, 27, .35); }
 .nav-brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-size: 21px; font-weight: 800; letter-spacing: -0.04em; justify-self: start; }
+.nav-brand svg { transition: transform .4s var(--ease); }
+.nav-brand:hover svg { transform: rotate(-14deg) scale(1.08); }
+@media (prefers-reduced-motion: reduce) { .nav-brand svg { transition: none; } }
 .nav-links { display: flex; gap: 2px; padding: 4px; border-radius: 999px; background: var(--surface); border: 1px solid var(--rule); }
 .is-scrolled .nav-links { border-color: transparent; background: transparent; }
 .nav-link { position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; font-size: 15px; font-weight: 700; color: var(--ink); text-decoration: none; transition: color .2s; }
@@ -104,6 +109,25 @@ p { margin: 0; }
 .word { display: inline-block; will-change: transform; }
 .hl { position: relative; display: inline-block; color: var(--forest); }
 .scribble { position: absolute; left: -3%; bottom: -0.06em; width: 106%; height: 0.3em; overflow: visible; pointer-events: none; }
+
+/* Tilt: a cover that leans toward the cursor */
+.tilt { position: relative; transform-style: preserve-3d; }
+.tilt-glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; mix-blend-mode: soft-light; }
+
+/* Marquee: an endless drifting shelf-label banner */
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee-row { display: flex; width: max-content; }
+.marquee-row:hover .marquee-track, .marquee-row:focus-within .marquee-track { animation-play-state: paused; }
+.marquee-track { display: flex; flex-shrink: 0; align-items: center; animation: marquee-scroll var(--marquee-speed, 34s) linear infinite; }
+.marquee-item { flex-shrink: 0; padding-inline: 20px; font-size: 16px; font-weight: 800; letter-spacing: -0.01em; white-space: nowrap; display: inline-flex; align-items: center; gap: 20px; }
+.marquee-item::after { content: '✦'; opacity: .5; font-size: 12px; }
+@keyframes marquee-scroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+
+/* Shelf band: the marquee strip between hero and pile */
+.shelf-band { background: var(--forest); padding-block: 18px; }
+.shelf-band .marquee-item { color: #D6E2DB; }
+.shelf-band .marquee-item strong { color: var(--accent); font-weight: 800; }
 .hero-lede { font-size: 20px; line-height: 1.6; max-width: 48ch; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-proof { display: flex; align-items: center; gap: 14px; font-size: 14px; color: var(--muted); max-width: 46ch; }
@@ -114,6 +138,18 @@ p { margin: 0; }
 
 /* The book fan */
 .fan { position: relative; height: 560px; }
+.fan-book { position: absolute; left: 50%; bottom: 96px; width: 300px; height: 214px; margin-left: -150px; z-index: 0; }
+.book-art { width: 100%; height: 100%; display: block; filter: drop-shadow(0 24px 30px rgba(22, 24, 27, .18)); }
+.book-art path { transform-style: preserve-3d; backface-visibility: hidden; }
+
+/* The hero's loading moment: the book plays its flip-through dead centre,
+   below the floating nav, then shrinks and slides toward the fan's corner,
+   crossfading with the small book already waiting in the fan's book slot. */
+.book-backdrop { position: fixed; inset: 0; z-index: 40; background: radial-gradient(60% 55% at 50% 42%, var(--sage), var(--bg) 72%); pointer-events: none; }
+.book-stage { position: fixed; inset: 0; z-index: 42; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.book-stage-inner { width: min(72vw, 420px); aspect-ratio: 420 / 300; }
+.book-stage-inner .book-art { filter: drop-shadow(0 40px 60px rgba(22, 24, 27, .3)); }
+@media (prefers-reduced-motion: reduce) { .book-backdrop, .book-stage { display: none; } }
 .fan-card {
   position: absolute; left: 50%; bottom: 150px; width: 176px; height: 236px; margin-left: -88px;
   transform-origin: 50% 120%; background: var(--surface); border: 1px solid var(--rule); border-radius: 18px;

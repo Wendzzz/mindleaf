@@ -67,6 +67,12 @@ export const BOOKS = [
 
 export const TOPICS = ['All', 'Habits', 'Money', 'Focus', 'Mindset']
 
+// A drifting shelf-label strip between the hero and the pile of half-read books.
+export const SHELF_BAND = [
+  'Atomic Habits', 'one idea a day', 'The Psychology of Money', 'eight minutes a morning',
+  'Deep Work', 'no more half-finished books', 'Mindset', 'a streak you can keep',
+]
+
 export const CLUB_MEMBERS = [
   { who: 'Tobi', initials: 'TK', color: '#FF8A45' },
   { who: 'Ada', initials: 'AO', color: '#7FB89D' },
