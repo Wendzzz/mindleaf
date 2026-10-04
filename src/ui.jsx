@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring } from 'motion/react'
 
 // Brand mark. "default" is for light backgrounds; "reversed" swaps the colours for the green footer,
 // where a green tile would disappear.
@@ -96,4 +96,67 @@ export function Reveal({ children, delay = 0, y = 28, className = '', as = 'div'
 
 export function Eyebrow({ children, tone = '' }) {
   return <span className={`eyebrow ${tone}`}>{children}</span>
+}
+
+// A book cover tipping toward your cursor, like you've picked it up off the shelf.
+// Pointer position drives a spring-smoothed 3D rotation; touch/reduced-motion get none.
+export function Tilt({ children, className = '', max = 10, glare = true }) {
+  const reduce = useReducedMotion()
+  const rx = useMotionValue(0)
+  const ry = useMotionValue(0)
+  const px = useMotionValue(50)
+  const py = useMotionValue(50)
+  const srx = useSpring(rx, { stiffness: 300, damping: 24 })
+  const sry = useSpring(ry, { stiffness: 300, damping: 24 })
+  const glareBg = useMotionTemplate`radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,.35), transparent 55%)`
+
+  if (reduce) return <div className={className}>{children}</div>
+
+  function onMove(e) {
+    const r = e.currentTarget.getBoundingClientRect()
+    const x = (e.clientX - r.left) / r.width
+    const y = (e.clientY - r.top) / r.height
+    ry.set((x - 0.5) * max * 2)
+    rx.set((0.5 - y) * max * 2)
+    px.set(x * 100)
+    py.set(y * 100)
+  }
+  function onLeave() {
+    rx.set(0)
+    ry.set(0)
+  }
+
+  return (
+    <motion.div
+      className={`tilt ${className}`}
+      style={{ rotateX: srx, rotateY: sry, transformPerspective: 700 }}
+      onPointerMove={onMove}
+      onPointerLeave={onLeave}
+    >
+      {children}
+      {glare && <motion.span className="tilt-glare" style={{ background: glareBg }} aria-hidden="true" />}
+    </motion.div>
+  )
+}
+
+// An endless banner of short phrases, drifting sideways like a spine label
+// wrapping around a shelf. Pure CSS animation so it never drops frames; pauses
+// on hover/focus and sits still for reduced motion.
+export function Marquee({ items, speed = 34, className = '' }) {
+  const reduce = useReducedMotion()
+  const track = (
+    <span className="marquee-track" aria-hidden="true">
+      {items.map((it, i) => (
+        <span className="marquee-item" key={i}>{it}</span>
+      ))}
+    </span>
+  )
+  return (
+    <div className={`marquee ${className}`} style={reduce ? undefined : { '--marquee-speed': `${speed}s` }}>
+      <div className="marquee-row" aria-label={items.join(', ')}>
+        {track}
+        {!reduce && track}
+      </div>
+    </div>
+  )
 }
